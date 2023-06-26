@@ -3,7 +3,7 @@ project:
     name: Scheduler-Lobby-Management-With-Walkins
     package:
         name: Scheduler-Lobby-Management-With-Walkins
-        api_version: '55.0'
+        api_version: '58.0'
     git:
         default_branch: 'main'
         prefix_feature: 'feature/'

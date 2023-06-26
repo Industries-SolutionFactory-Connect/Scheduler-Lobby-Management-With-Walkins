@@ -188,24 +188,9 @@ Insert SkillRequirement:
     SkillId:
       table: Skill
       key_field: SkillId
-Insert ServiceResource:
-  sf_object: ServiceResource
-  table: ServiceResource
-  fields:
-  - IsActive
-  - Description
-  - Name
-  - ResourceType
-  lookups:
-    AccountId:
-      table: Account
-      key_field: AccountId
-    AssetId:
-      table: Asset
-      key_field: AssetId
-    LocationId:
-      table: Location
-      key_field: LocationId
+    RelatedRecordId:
+      table: WorkType
+      key_field: RelatedRecordId
 Insert AppointmentTopicTimeSlot:
   sf_object: AppointmentTopicTimeSlot
   table: AppointmentTopicTimeSlot
@@ -231,43 +216,10 @@ Insert ServiceTerritoryWorkType:
     WorkTypeId:
       table: WorkType
       key_field: WorkTypeId
-Insert ServiceTerritoryMember:
-  sf_object: ServiceTerritoryMember
-  table: ServiceTerritoryMember
+Insert AppointmentCategory:
+  sf_object: AppointmentCategory
+  table: AppointmentCategory
   fields:
-  - Street
-  - City
-  - Country
-  - EffectiveEndDate
-  - GeocodeAccuracy
-  - Latitude
-  - Longitude
-  - Role
-  - EffectiveStartDate
-  - State
-  - TerritoryType
-  - PostalCode
-  lookups:
-    OperatingHoursId:
-      table: OperatingHours
-      key_field: OperatingHoursId
-    ServiceResourceId:
-      table: ServiceResource
-      key_field: ServiceResourceId
-    ServiceTerritoryId:
-      table: ServiceTerritory
-      key_field: ServiceTerritoryId
-Insert ServiceResourceSkill:
-  sf_object: ServiceResourceSkill
-  table: ServiceResourceSkill
-  fields:
-  - EffectiveEndDate
-  - SkillLevel
-  - EffectiveStartDate
-  lookups:
-    ServiceResourceId:
-      table: ServiceResource
-      key_field: ServiceResourceId
-    SkillId:
-      table: Skill
-      key_field: SkillId
+  - Name
+  - IsDropIn
+  - IsScheduled

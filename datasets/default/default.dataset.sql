@@ -118,37 +118,7 @@ CREATE TABLE "OperatingHours" (
 	"TimeZone" VARCHAR(255), 
 	PRIMARY KEY (id)
 );
-INSERT INTO "OperatingHours" VALUES(1,'','PDT','America/Los_Angeles');
-CREATE TABLE "ServiceResource" (
-	id INTEGER NOT NULL, 
-	"IsActive" VARCHAR(255), 
-	"Description" VARCHAR(255), 
-	"Name" VARCHAR(255), 
-	"ResourceType" VARCHAR(255), 
-	"AccountId" VARCHAR(255), 
-	"AssetId" VARCHAR(255), 
-	"LocationId" VARCHAR(255), 
-	PRIMARY KEY (id)
-);
-INSERT INTO "ServiceResource" VALUES(1,'True','','SR2','T','','','');
-INSERT INTO "ServiceResource" VALUES(2,'True','','SR1','T','','','');
-INSERT INTO "ServiceResource" VALUES(3,'True','','SR3','T','','','');
-CREATE TABLE "ServiceResourceSkill" (
-	id INTEGER NOT NULL, 
-	"EffectiveEndDate" VARCHAR(255), 
-	"SkillLevel" VARCHAR(255), 
-	"EffectiveStartDate" VARCHAR(255), 
-	"ServiceResourceId" VARCHAR(255), 
-	"SkillId" VARCHAR(255), 
-	PRIMARY KEY (id)
-);
-INSERT INTO "ServiceResourceSkill" VALUES(1,'','99.0','2023-06-12T19:00:00.000+0000','2','1');
-INSERT INTO "ServiceResourceSkill" VALUES(2,'','99.0','2023-06-12T19:00:00.000+0000','2','2');
-INSERT INTO "ServiceResourceSkill" VALUES(3,'','99.0','2023-06-12T19:00:00.000+0000','1','1');
-INSERT INTO "ServiceResourceSkill" VALUES(4,'','99.0','2023-06-12T19:00:00.000+0000','1','2');
-INSERT INTO "ServiceResourceSkill" VALUES(5,'','99.0','2023-06-12T19:00:00.000+0000','1','3');
-INSERT INTO "ServiceResourceSkill" VALUES(6,'','90.0','2023-06-12T19:00:00.000+0000','3','3');
-CREATE TABLE "ServiceTerritory" (
+INSERT INTO "OperatingHours" VALUES(1,'','PDT','America/Los_Angeles');CREATE TABLE "ServiceTerritory" (
 	id INTEGER NOT NULL, 
 	"IsActive" VARCHAR(255), 
 	"Street" VARCHAR(255), 
@@ -167,28 +137,6 @@ CREATE TABLE "ServiceTerritory" (
 	PRIMARY KEY (id)
 );
 INSERT INTO "ServiceTerritory" VALUES(1,'True','425 Market Street','San Francisco','United States','','Address','37.791124','-122.398128','Market Street','CA','','94105','1','');
-CREATE TABLE "ServiceTerritoryMember" (
-	id INTEGER NOT NULL, 
-	"Street" VARCHAR(255), 
-	"City" VARCHAR(255), 
-	"Country" VARCHAR(255), 
-	"EffectiveEndDate" VARCHAR(255), 
-	"GeocodeAccuracy" VARCHAR(255), 
-	"Latitude" VARCHAR(255), 
-	"Longitude" VARCHAR(255), 
-	"Role" VARCHAR(255), 
-	"EffectiveStartDate" VARCHAR(255), 
-	"State" VARCHAR(255), 
-	"TerritoryType" VARCHAR(255), 
-	"PostalCode" VARCHAR(255), 
-	"OperatingHoursId" VARCHAR(255), 
-	"ServiceResourceId" VARCHAR(255), 
-	"ServiceTerritoryId" VARCHAR(255), 
-	PRIMARY KEY (id)
-);
-INSERT INTO "ServiceTerritoryMember" VALUES(1,'','','','','','','','','2023-06-12T19:00:00.000+0000','','P','','','1','1');
-INSERT INTO "ServiceTerritoryMember" VALUES(2,'','','','','','','','','2023-06-12T19:00:00.000+0000','','P','','','2','1');
-INSERT INTO "ServiceTerritoryMember" VALUES(3,'','','','','','','','','2023-06-12T19:00:00.000+0000','','P','','','3','1');
 CREATE TABLE "ServiceTerritoryWorkType" (
 	id INTEGER NOT NULL, 
 	"ServiceTerritoryId" VARCHAR(255), 
@@ -215,13 +163,14 @@ CREATE TABLE "SkillRequirement" (
 	id INTEGER NOT NULL, 
 	"SkillLevel" VARCHAR(255), 
 	"SkillId" VARCHAR(255), 
+	"RelatedRecordId" VARCHAR(255), 
 	PRIMARY KEY (id)
 );
-INSERT INTO "SkillRequirement" VALUES(1,'','3');
-INSERT INTO "SkillRequirement" VALUES(2,'50.0','1');
-INSERT INTO "SkillRequirement" VALUES(3,'','1');
-INSERT INTO "SkillRequirement" VALUES(4,'','2');
-INSERT INTO "SkillRequirement" VALUES(5,'','1');
+INSERT INTO "SkillRequirement" VALUES(1,'','3','1');
+INSERT INTO "SkillRequirement" VALUES(2,'50.0','1','2');
+INSERT INTO "SkillRequirement" VALUES(3,'','1','3');
+INSERT INTO "SkillRequirement" VALUES(4,'','2','4');
+INSERT INTO "SkillRequirement" VALUES(5,'','1','5');
 CREATE TABLE "TimeSlot" (
 	id INTEGER NOT NULL, 
 	"DayOfWeek" VARCHAR(255), 
@@ -285,4 +234,14 @@ INSERT INTO "WorkTypeGroupMember" VALUES(2,'2','2');
 INSERT INTO "WorkTypeGroupMember" VALUES(3,'3','4');
 INSERT INTO "WorkTypeGroupMember" VALUES(4,'4','5');
 INSERT INTO "WorkTypeGroupMember" VALUES(5,'5','1');
+CREATE TABLE "AppointmentCategory" (
+	id INTEGER NOT NULL, 
+	"Name" VARCHAR(255), 
+	"IsDropIn" VARCHAR(255), 
+	"IsScheduled" VARCHAR(255), 
+	PRIMARY KEY (id)
+);
+INSERT INTO "AppointmentCategory" VALUES(1,'Drop Ins','True','False');
+INSERT INTO "AppointmentCategory" VALUES(2,'Scheduled','False','True');
+INSERT INTO "AppointmentCategory" VALUES(3,'Both','True','True');
 COMMIT;
