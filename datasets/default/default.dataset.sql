@@ -202,13 +202,14 @@ CREATE TABLE "WorkType" (
 	"TimeFrameStartUnit" VARCHAR(255), 
 	"TimeframeEnd" VARCHAR(255), 
 	"TimeframeStart" VARCHAR(255), 
+	"AppointmentCategoryId" VARCHAR(255), 
 	PRIMARY KEY (id)
 );
-INSERT INTO "WorkType" VALUES(1,'','Minutes','','Minutes','','','Minutes','30.0','General Banking','Days','Days','','');
-INSERT INTO "WorkType" VALUES(2,'','Minutes','','Minutes','','','Hours','1.0','Investment Banking','Days','Days','','');
-INSERT INTO "WorkType" VALUES(3,'','Minutes','','Minutes','','','Minutes','30.0','Business Banking','Days','Days','','');
-INSERT INTO "WorkType" VALUES(4,'','Minutes','','Minutes','','','Hours','1.0','Mortgage','Days','Days','','');
-INSERT INTO "WorkType" VALUES(5,'','Minutes','','Minutes','','','Minutes','30.0','Notary','Days','Days','','');
+INSERT INTO "WorkType" VALUES(1,'','Minutes','','Minutes','','','Minutes','30.0','General Banking','Days','Days','','','3');
+INSERT INTO "WorkType" VALUES(2,'','Minutes','','Minutes','','','Hours','1.0','Investment Banking','Days','Days','','','3');
+INSERT INTO "WorkType" VALUES(3,'','Minutes','','Minutes','','','Minutes','30.0','Business Banking','Days','Days','','','3');
+INSERT INTO "WorkType" VALUES(4,'','Minutes','','Minutes','','','Hours','1.0','Mortgage','Days','Days','','','1');
+INSERT INTO "WorkType" VALUES(5,'','Minutes','','Minutes','','','Minutes','30.0','Notary','Days','Days','','','1');
 CREATE TABLE "WorkTypeGroup" (
 	id INTEGER NOT NULL, 
 	"AdditionalInformation" VARCHAR(255), 

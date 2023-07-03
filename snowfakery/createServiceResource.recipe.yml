@@ -1,0 +1,31 @@
+- plugin: snowfakery.standard_plugins.Salesforce.SalesforceQuery
+- object: ServiceResource 
+  count: 1
+  fields: 
+    Name: SR1
+    RelatedRecordId: 
+      SalesforceQuery.find_record:
+        from: User
+        where: LastName = 'Resource 1'  
+    ResourceType: T
+    IsActive: true
+- object: ServiceResource 
+  count: 1
+  fields: 
+    Name: SR2
+    RelatedRecordId: 
+      SalesforceQuery.find_record:
+        from: User
+        where: LastName = 'Resource 2'  
+    ResourceType: T
+    IsActive: true
+- object: ServiceResource 
+  count: 1
+  fields: 
+    Name: SR3
+    RelatedRecordId: 
+      SalesforceQuery.find_record:
+        from: User
+        where: LastName = 'Resource 3'
+    ResourceType: T
+    IsActive: true

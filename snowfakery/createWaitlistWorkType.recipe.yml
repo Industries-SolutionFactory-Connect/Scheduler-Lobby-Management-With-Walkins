@@ -1,0 +1,56 @@
+- plugin: snowfakery.standard_plugins.Salesforce.SalesforceQuery
+- object: WaitlistWorkType 
+  count: 1
+  fields: 
+    WaitlistId: 
+      SalesforceQuery.find_record:
+        from: Waitlist
+        where: Name = 'Banking Services'
+    WorkTypeId: 
+      SalesforceQuery.find_record:
+        from: WorkType
+        where: Name = 'General Banking' 
+- object: WaitlistWorkType 
+  count: 1
+  fields: 
+    WaitlistId: 
+      SalesforceQuery.find_record:
+        from: Waitlist
+        where: Name = 'Banking Services'
+    WorkTypeId: 
+      SalesforceQuery.find_record:
+        from: WorkType
+        where: Name = 'Investment Banking' 
+- object: WaitlistWorkType 
+  count: 1
+  fields: 
+    WaitlistId: 
+      SalesforceQuery.find_record:
+        from: Waitlist
+        where: Name = 'Banking Services'
+    WorkTypeId: 
+      SalesforceQuery.find_record:
+        from: WorkType
+        where: Name = 'Business Banking' 
+- object: WaitlistWorkType 
+  count: 1
+  fields: 
+    WaitlistId: 
+      SalesforceQuery.find_record:
+        from: Waitlist
+        where: Name = 'Mortgage Services'
+    WorkTypeId: 
+      SalesforceQuery.find_record:
+        from: WorkType
+        where: Name = 'Mortgage' 
+- object: WaitlistWorkType 
+  count: 1
+  fields: 
+    WaitlistId: 
+      SalesforceQuery.find_record:
+        from: Waitlist
+        where: Name = 'Notary Services'
+    WorkTypeId: 
+      SalesforceQuery.find_record:
+        from: WorkType
+        where: Name = 'Notary' 

@@ -29,6 +29,13 @@ Insert Skill:
   - DeveloperName
   - Language
   - MasterLabel
+Insert AppointmentCategory:
+  sf_object: AppointmentCategory
+  table: AppointmentCategory
+  fields:
+  - Name
+  - IsDropIn
+  - IsScheduled
 Insert WorkType:
   sf_object: WorkType
   table: WorkType
@@ -46,6 +53,10 @@ Insert WorkType:
   - TimeFrameStartUnit
   - TimeframeEnd
   - TimeframeStart
+  lookups:
+    AppointmentCategoryId:
+      table: AppointmentCategory
+      key_field: AppointmentCategoryId
 Insert Account:
   sf_object: Account
   table: Account
@@ -216,10 +227,4 @@ Insert ServiceTerritoryWorkType:
     WorkTypeId:
       table: WorkType
       key_field: WorkTypeId
-Insert AppointmentCategory:
-  sf_object: AppointmentCategory
-  table: AppointmentCategory
-  fields:
-  - Name
-  - IsDropIn
-  - IsScheduled
+
