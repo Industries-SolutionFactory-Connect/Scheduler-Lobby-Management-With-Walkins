@@ -3,12 +3,10 @@ project:
     name: Scheduler-Lobby-Management-With-Walkins
     package:
         name: Scheduler-Lobby-Management-With-Walkins
-        api_version: '55.0'
+        api_version: '58.0'
     git:
         default_branch: 'main'
-        prefix_feature: 'feature/'
-        prefix_beta: 'beta/'
-        prefix_release: 'release/'
+        repo_url: https://github.com/Industries-SolutionFactory-Connect/Scheduler-Lobby-Management-With-Walkins/tree/main
     source_format: sfdx
 
 tasks:
@@ -26,3 +24,81 @@ tasks:
     run_tests:
         options:
             required_org_code_coverage_percent: 75
+flows:
+    config_dev:
+        steps:
+            3:
+                task: load_dataset
+                options:
+                    mapping: datasets/default/default.mapping.yml
+                    sql_path: datasets/default/default.dataset.sql
+                ui_options:
+                    name: "Load sample data for Scheduler cloud"
+            4:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createUsers.recipe.yml
+                ui_options:
+                    name: Create Users for Service Resources
+            5:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createServiceResource.recipe.yml
+                ui_options:
+                    name: Create Service Resources
+            6:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createServiceTerritoryMember.recipe.yml
+                ui_options:
+                    name: Create Service Territory Members
+            7:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createServiceResourceSkill.recipe.yml
+                ui_options:
+                    name: Create Service Resource Skills
+            8:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createWaitlist.recipe.yml
+                ui_options:
+                    name: Create Waitlists
+            9:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createWaitlistWorkType.recipe.yml
+                ui_options:
+                    name: Create Waitlist Work Type records
+            10:
+                task: assign_permission_sets
+                options:
+                    api_names: Branch_Officer_General_Object_Perms,Branch_Officer_Scheduler_Objects
+                    user_alias: sreso1,sreso2,sreso3
+                ui_options:
+                    name: Assign Salesforce Scheduler Permission sets to Service Resources
+            11:
+                task: assign_permission_set_licenses
+                options:
+                    api_names: SchedulingLineAmbassadorPsl,LightningSchedulerPsl
+                    user_alias: sreso1,sreso2,sreso3
+                ui_options:
+                    name: Assign Salesforce Scheduler PSL to Service Resources
+            90:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createWaitlistServiceResource.recipe.yml
+                ui_options:
+                    name: Create Waitlist ServiceResource records   
+plans:
+    install:
+        slug: install
+        title: Scheduler - Lobby Management with Drop-ins
+        tier: primary
+        is_listed: True
+        preflight_message: "This will showcase Lobby Management with Drop-ins feature of Scheduler cloud."
+        post_install_message: "Thanks for installing Lobby Management with Drop-ins feature of Scheduler cloud."
+        error_message: "To get help with this error, go to [help.salesforce.com](https://help.salesforce.com/),find the Support & Services area and log a technical support ticket with Salesforce. Include “PMM” in the subject line and include in your comment the installation link shown here."
+        steps:
+            1:
+                flow: dev_org          
