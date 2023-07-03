@@ -1,0 +1,40 @@
+- plugin: snowfakery.standard_plugins.Salesforce.SalesforceQuery
+- object: WaitlistServiceResource 
+  count: 1
+  fields: 
+    AccessLevel: Default
+    IsAvailable : true
+    ServiceResourceId: 
+      SalesforceQuery.find_record:
+        from: ServiceResource
+        where: Name = 'SR1'
+    WaitlistId: 
+      SalesforceQuery.find_record:
+        from: Waitlist
+        where: Name = 'Banking Services' 
+- object: WaitlistServiceResource 
+  count: 1
+  fields: 
+    AccessLevel: Default
+    IsAvailable : true
+    ServiceResourceId: 
+      SalesforceQuery.find_record:
+        from: ServiceResource
+        where: Name = 'SR3'
+    WaitlistId: 
+      SalesforceQuery.find_record:
+        from: Waitlist
+        where: Name = 'Notary Services'  
+- object: WaitlistServiceResource 
+  count: 1
+  fields: 
+    AccessLevel: Default
+    IsAvailable : true
+    ServiceResourceId: 
+      SalesforceQuery.find_record:
+        from: ServiceResource
+        where: Name = 'SR2'
+    WaitlistId: 
+      SalesforceQuery.find_record:
+        from: Waitlist
+        where: Name = 'Mortgage Services'  
