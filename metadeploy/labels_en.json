@@ -1,0 +1,104 @@
+{
+    "product": {
+        "title": {
+            "message": "Lobby Management for Drop-In Customers",
+            "description": "name of product"
+        },
+        "short_description": {
+            "message": "Efficiently manage the customers who visit business locations without prior appointments, to get actionable insights from the information that a greeter captures when the customer arrives.",
+            "description": "tagline of product"
+        },
+        "description": {
+            "message": "Efficiently manage the customers who visit business locations without prior appointments, to get actionable insights from the information that a greeter captures when the customer arrives.",
+            "description": "shown on product detail page (markdown)"
+        },
+        "error_message": {
+            "message": "Kindly check the org which you are using to test this product if it has Scheduler cloud Licences/ Psl's.",
+            "description": "shown after failed installation (markdown)"
+        }
+    },
+    "plan:install": {
+        "title": {
+            "message": "Scheduler - Lobby Management with Drop-ins",
+            "description": "title of installation plan"
+        },
+        "preflight_message": {
+            "message": "This will showcase Lobby Management with Drop-ins feature of Scheduler cloud.",
+            "description": "shown before user starts installation (markdown)"
+        },
+        "post_install_message": {
+            "message": "Thanks for installing Lobby Management with Drop-ins feature of Scheduler cloud.",
+            "description": "shown after successful installation (markdown)"
+        },
+        "error_message": {
+            "message": "To get help with this error, go to [help.salesforce.com](https://help.salesforce.com/),find the Support & Services area and log a technical support ticket with Salesforce. Include \u201cPMM\u201d in the subject line and include in your comment the installation link shown here.",
+            "description": "shown after failed installation (markdown)"
+        }
+    },
+    "steps": {
+        "dx_convert_from": {
+            "message": "dx_convert_from",
+            "description": "title of installation step"
+        },
+        "unschedule_apex": {
+            "message": "unschedule_apex",
+            "description": "title of installation step"
+        },
+        "update_package_xml": {
+            "message": "update_package_xml",
+            "description": "title of installation step"
+        },
+        "deploy": {
+            "message": "deploy",
+            "description": "title of installation step"
+        },
+        "uninstall_packaged_incremental": {
+            "message": "uninstall_packaged_incremental",
+            "description": "title of installation step"
+        },
+        "Update Admin Profile": {
+            "message": "Update Admin Profile",
+            "description": "title of installation step"
+        },
+        "Load sample data for Scheduler cloud": {
+            "message": "Load sample data for Scheduler cloud",
+            "description": "title of installation step"
+        },
+        "Create Users for Service Resources": {
+            "message": "Create Users for Service Resources",
+            "description": "title of installation step"
+        },
+        "Create Service Resources": {
+            "message": "Create Service Resources",
+            "description": "title of installation step"
+        },
+        "Create Service Territory Members": {
+            "message": "Create Service Territory Members",
+            "description": "title of installation step"
+        },
+        "Create Service Resource Skills": {
+            "message": "Create Service Resource Skills",
+            "description": "title of installation step"
+        },
+        "Create Waitlists": {
+            "message": "Create Waitlists",
+            "description": "title of installation step"
+        },
+        "Create Waitlist Work Type records": {
+            "message": "Create Waitlist Work Type records",
+            "description": "title of installation step"
+        },
+        "Assign Salesforce Scheduler Permission sets to Service Resources": {
+            "message": "Assign Salesforce Scheduler Permission sets to Service Resources",
+            "description": "title of installation step"
+        },
+        "Assign Salesforce Scheduler PSL to Service Resources": {
+            "message": "Assign Salesforce Scheduler PSL to Service Resources",
+            "description": "title of installation step"
+        },
+        "Create Waitlist ServiceResource records": {
+            "message": "Create Waitlist ServiceResource records",
+            "description": "title of installation step"
+        }
+    }
+}
