@@ -25,71 +25,20 @@ tasks:
         options:
             required_org_code_coverage_percent: 75
 flows:
-    config_dev:
+    scheduler-setup:
         steps:
-            3:
-                task: load_dataset
+            1:
+                task: org_settings
                 options:
-                    mapping: datasets/default/default.mapping.yml
-                    sql_path: datasets/default/default.dataset.sql
+                    definition_file: orgs/dev.json
                 ui_options:
-                    name: "Load sample data for Scheduler cloud"
-            4:
-                task: generate_and_load_from_yaml
+                    name: Enable the Industries Settings   
+            2:
+                task: deploy
                 options:
-                    generator_yaml: snowfakery/createUsers.recipe.yml
+                    path: force-app/main/default/
                 ui_options:
-                    name: Create Users for Service Resources
-            5:
-                task: generate_and_load_from_yaml
-                options:
-                    generator_yaml: snowfakery/createServiceResource.recipe.yml
-                ui_options:
-                    name: Create Service Resources
-            6:
-                task: generate_and_load_from_yaml
-                options:
-                    generator_yaml: snowfakery/createServiceTerritoryMember.recipe.yml
-                ui_options:
-                    name: Create Service Territory Members
-            7:
-                task: generate_and_load_from_yaml
-                options:
-                    generator_yaml: snowfakery/createServiceResourceSkill.recipe.yml
-                ui_options:
-                    name: Create Service Resource Skills
-            8:
-                task: generate_and_load_from_yaml
-                options:
-                    generator_yaml: snowfakery/createWaitlist.recipe.yml
-                ui_options:
-                    name: Create Waitlists
-            9:
-                task: generate_and_load_from_yaml
-                options:
-                    generator_yaml: snowfakery/createWaitlistWorkType.recipe.yml
-                ui_options:
-                    name: Create Waitlist Work Type records
-            10:
-                task: assign_permission_sets
-                options:
-                    api_names: Branch_Officer_General_Object_Perms,Branch_Officer_Scheduler_Objects
-                    user_alias: sreso1,sreso2,sreso3
-                ui_options:
-                    name: Assign Salesforce Scheduler Permission sets to Service Resources
-            11:
-                task: assign_permission_set_licenses
-                options:
-                    api_names: SchedulingLineAmbassadorPsl,LightningSchedulerPsl
-                    user_alias: sreso1,sreso2,sreso3
-                ui_options:
-                    name: Assign Salesforce Scheduler PSL to Service Resources
-            90:
-                task: generate_and_load_from_yaml
-                options:
-                    generator_yaml: snowfakery/createWaitlistServiceResource.recipe.yml
-                ui_options:
-                    name: Create Waitlist ServiceResource records   
+                    name: Deploy the metadata
 plans:
     install:
         slug: install
@@ -101,5 +50,5 @@ plans:
         error_message: "To get help with this error, go to [help.salesforce.com](https://help.salesforce.com/),find the Support & Services area and log a technical support ticket with Salesforce. Include “PMM” in the subject line and include in your comment the installation link shown here."
         steps:
             1:
-                flow: dev_org          
+                flow: scheduler-setup          
 
