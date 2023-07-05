@@ -19,6 +19,11 @@
     },
     "languageSettings": {
       "enableTranslationWorkbench": true
+    },
+    "industriesSettings": {
+      "enableShareSaWithArOrgPref":true,
+      "enableDropInAppointmentsOrgPref":true,
+      "enableDropInSkillMatchingOrgPref":true
     }
   }
 }
