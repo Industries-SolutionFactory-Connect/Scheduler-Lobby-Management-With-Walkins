@@ -3,12 +3,10 @@ project:
     name: Scheduler-Lobby-Management-With-Walkins
     package:
         name: Scheduler-Lobby-Management-With-Walkins
-        api_version: '55.0'
+        api_version: '58.0'
     git:
         default_branch: 'main'
-        prefix_feature: 'feature/'
-        prefix_beta: 'beta/'
-        prefix_release: 'release/'
+        repo_url: https://github.com/Industries-SolutionFactory-Connect/Scheduler-Lobby-Management-With-Walkins/tree/main
     source_format: sfdx
 
 tasks:
@@ -26,3 +24,31 @@ tasks:
     run_tests:
         options:
             required_org_code_coverage_percent: 75
+flows:
+    scheduler-setup:
+        steps:
+            1:
+                task: org_settings
+                options:
+                    definition_file: orgs/dev.json
+                ui_options:
+                    name: Enable the Industries Settings   
+            2:
+                task: deploy
+                options:
+                    path: force-app/main/default/
+                ui_options:
+                    name: Deploy the metadata
+plans:
+    install:
+        slug: install
+        title: Lobby Management for Drop-In Customers
+        tier: primary
+        is_listed: True
+        preflight_message: "This will showcase Lobby Management with Drop-ins feature of Scheduler cloud."
+        post_install_message: "Thanks for installing Lobby Management with Drop-ins feature of Scheduler cloud."
+        error_message: "To get help with this error, go to [help.salesforce.com](https://help.salesforce.com/),find the Support & Services area and log a technical support ticket with Salesforce. Include “PMM” in the subject line and include in your comment the installation link shown here."
+        steps:
+            1:
+                flow: scheduler-setup          
+
