@@ -39,6 +39,75 @@ flows:
                     path: force-app/main/default/
                 ui_options:
                     name: Deploy the metadata
+            3:
+                task: update_admin_profile
+                ui_options:
+                    name: Provide access to user
+    scheduler-load-data:
+        steps:
+            1:
+                task: load_dataset
+                options:
+                    mapping: datasets/default/default.mapping.yml
+                    sql_path: datasets/default/default.dataset.sql
+                ui_options:
+                    name: "Load sample data for Scheduler cloud"
+            2:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createUsers.recipe.yml
+                ui_options:
+                    name: Create Users for Service Resources
+            3:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createServiceResource.recipe.yml
+                ui_options:
+                    name: Create Service Resources
+            4:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createServiceTerritoryMember.recipe.yml
+                ui_options:
+                    name: Create Service Territory Members
+            5:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createServiceResourceSkill.recipe.yml
+                ui_options:
+                    name: Create Service Resource Skills
+            6:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createWaitlist.recipe.yml
+                ui_options:
+                    name: Create Waitlists
+            7:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createWaitlistWorkType.recipe.yml
+                ui_options:
+                    name: Create Waitlist Work Type records
+            8:
+                task: assign_permission_sets
+                options:
+                    api_names: Branch_Officer_General_Object_Perms,Branch_Officer_Scheduler_Objects
+                    user_alias: sreso1,sreso2,sreso3
+                ui_options:
+                    name: Assign Salesforce Scheduler Permission sets to Service Resources
+            9:
+                task: assign_permission_set_licenses
+                options:
+                    api_names: SchedulingLineAmbassadorPsl,LightningSchedulerPsl
+                    user_alias: sreso1,sreso2,sreso3
+                ui_options:
+                    name: Assign Salesforce Scheduler PSL to Service Resources
+            10:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: snowfakery/createWaitlistServiceResource.recipe.yml
+                ui_options:
+                    name: Create Waitlist ServiceResource records   
 plans:
     install:
         slug: install
@@ -55,3 +124,19 @@ plans:
         steps:
             1:
                 flow: scheduler-setup          
+
+    install_data:
+        slug: install_data
+        title: Sample Data Plan
+        tier: additional
+        is_listed: True
+        preflight_message: "This will load data for Lobby Management with Drop-ins feature of Scheduler cloud"
+        post_install_message: "Thank you for installing Lobby Management with Drop-ins feature and loading data. "
+        error_message: "To get help with this error, go to [help.salesforce.com](https://help.salesforce.com/), find the Support & Services area and log a technical support ticket with Salesforce. Include “PMM” in the subject line and include in your comment the installation link shown here."
+        checks:
+          - when: "'LightningSchedulerPsl' not in tasks.get_available_permission_set_licenses()"
+            action: error
+            message: "You need LightningSchedulerPsl licence to use this feature. Contact your Administrator."
+        steps:
+            1:
+                flow: scheduler-load-data
